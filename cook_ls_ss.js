@@ -4,8 +4,8 @@
 
 (() => {
     cookie();
-    localStorage();
-    sessionStorage();
+    ls();
+    ss();
 })()
 
 
@@ -28,7 +28,7 @@ function cookie() {
 }
 
 
-function localStorage() {
+function ls() {
     if (localStorage.getItem('local-cv') === null) {
         let r = Math.floor(Math.random() * 1000000000000000); 
         localStorage.setItem('local-cv', r);
@@ -39,13 +39,13 @@ function localStorage() {
 
     document.getElementById('local-cv').innerText = localStorage.getItem('local-cv')
     // document.getElementById('cook-ed').innerText = getCookie('cook-ed')
-    document.getElementById('local-sd').innerText = localStorage.getItem('session-cv')
+    document.getElementById('local-sd').innerText = localStorage.getItem('local-sd')
 }
 
-function sessionStorage() {
+function ss() {
     if (sessionStorage.getItem('session-cv') === null) {
         let r = Math.floor(Math.random() * 1000000000000000); 
-        sessionStorage.getItem('session-cv', r);
+        sessionStorage.setItem('session-cv', r);
     }
 
     var date = new Date();
