@@ -32,10 +32,11 @@ function ls() {
     if (localStorage.getItem('local-cv') === null) {
         let r = Math.floor(Math.random() * 1000000000000000); 
         localStorage.setItem('local-cv', r);
-    }
+    
 
-    var date = new Date();
-    localStorage.setItem('local-sd', formatNiceDate(date))
+        var date = new Date();
+        localStorage.setItem('local-sd', formatNiceDate(date))
+    }
 
     document.getElementById('local-cv').innerText = localStorage.getItem('local-cv')
     // document.getElementById('cook-ed').innerText = getCookie('cook-ed')
@@ -46,10 +47,10 @@ function ss() {
     if (sessionStorage.getItem('session-cv') === null) {
         let r = Math.floor(Math.random() * 1000000000000000); 
         sessionStorage.setItem('session-cv', r);
-    }
 
-    var date = new Date();
-    sessionStorage.setItem('session-sd', formatNiceDate(date))
+        var date = new Date();
+        sessionStorage.setItem('session-sd', formatNiceDate(date))
+    }
 
     document.getElementById('session-cv').innerText = sessionStorage.getItem('session-cv')
     // document.getElementById('cook-ed').innerText = getCookie('cook-ed')
