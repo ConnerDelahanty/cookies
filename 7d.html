@@ -1,0 +1,98 @@
+<!-- Test of Secret; AppLovin, Conner Delahanty -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Demo</title>
+</head>
+<body>
+    <section style="margin-bottom: 50px;">
+    <h1>Expiration Time: 7d</h1>
+    <h1>This is a random user token dropped into Cookie by alevent.js </h1> 
+    <p id="rnd-cv"></p>
+    
+    <h1>Expiration Date </h1>
+    <p id="rnd-ed"></p>
+
+    <h1>Set Date </h1>
+    <p id="rnd-sd"></p>
+
+    <script src="https://connerdelahanty.github.io/cookies/alevent_7d.js"></script>
+    </section>
+
+    <hr/>
+
+    <section style="margin-top: 50px;">
+        <h1>This cookie set by Query Parameter</h1> 
+        <p id="qp-cv"></p>
+        
+        <h1>Expiration Date </h1>
+        <p id="qp-ed"></p>
+    
+        <h1>Set Date </h1>
+        <p id="qp-sd"></p>
+    
+
+    <script>
+        (() => {
+            const EXP_DAYS = 7;
+            const searchParams = new URLSearchParams(window.location.search);
+            let secret = searchParams.get('secret')
+            if (secret !== null) {
+                qpSetCookie('secret', secret, EXP_DAYS);
+
+                var date = new Date();
+                qpSetCookie('qp-set-date', qpFormatNiceDate(date), EXP_DAYS)
+
+                date.setTime(date.getTime() + (EXP_DAYS * 24 * 60 * 60 * 1000))
+                qpSetCookie('qp-expire-date', qpFormatNiceDate(date), EXP_DAYS)
+                console.log('Cookies set')
+            }
+
+            console.log(qpGetCookie('secret'))
+            console.log(qpGetCookie('qp-set-date'))
+            console.log(qpGetCookie('qp-expire-date'))
+
+            document.getElementById('qp-cv').innerText = qpGetCookie('secret')
+            document.getElementById('qp-ed').innerText = qpGetCookie('qp-expire-date')
+            document.getElementById('qp-sd').innerText = qpGetCookie('qp-set-date')
+        })()
+
+        function qpSetCookie(name, value, days) {
+            var expires = "";
+
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        function qpGetCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        }
+
+        function qpFormatNiceDate(date) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+
+    </script>
+
+    </section>
+
+    <!-- Note, the expiration date is determined from another cookie. It is not possible to read cookie expiration date directly from document.cookie -->
+</body>
+</html>
