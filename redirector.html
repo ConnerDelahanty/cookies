@@ -8,11 +8,11 @@
 </head>
 <body>
     <p>
-        Clicking the below link will take you to another site. Before that happens, it will 
-        change your current URL ("referrer") to have a "rid" (referrer ID), as well as direct
-        you to a site with a query parameter "nid" (new ID).
+        Clicking the below link will take you to another site. This will 
+        redirect you with your current URL having query parameter "rid", as well 
+        as append a new id "nid" query parameter to the new site. 
 
-        The new site will display the referrer and nid as available. 
+        The new site will display the rid and nid as available. 
     </p>
 
     <button id="btn-redirect">Click Me to Redirect</button>
@@ -29,7 +29,7 @@
     }
 
     document.getElementById("btn-redirect").onclick = function(event) {
-        var targetURL = "https://identification-testing-ce12468ede46.herokuapp.com/redirect?rid=1234567890"
+        var targetUrl = "https://identification-testing-ce12468ede46.herokuapp.com/redirect?nid=1234567890"
         window.location.href = targetUrl;
     }
 
