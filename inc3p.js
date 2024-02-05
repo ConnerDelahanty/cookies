@@ -33,6 +33,7 @@ function setCookieByServer(value, days) {
     fetch(url, {
         method: 'GET',
         credentials: 'include',
+        mode: "no-cors"
     })
     .then(response => {
         if(response.ok) {
