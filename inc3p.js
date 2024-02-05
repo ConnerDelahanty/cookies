@@ -69,10 +69,9 @@ if (sessionStorage.getItem("inc3p-ss") === null) {
     sessionStorage.setItem("inc3p-ss", generateUUID());
 }
 
-console.log(getCookie("inc3p-dc7"))
 document.getElementById('inc3p-dc7').innerText = getCookie("inc3p-dc7");
 document.getElementById('inc3p-dc30').innerText = getCookie("inc3p-dc30");
 document.getElementById('inc3p-sc1p7').innerText = getCookie("inc3p-sc1p7");
 document.getElementById('inc3p-sc1p30').innerText = getCookie("inc3p-sc1p30");
-document.getElementById('inc3p-ls').innerText = getCookie("inc3p-ls");
-document.getElementById('inc3p-ss').innerText = getCookie("inc3p-ss");
+document.getElementById('inc3p-ls').innerText = localStorage.getItem("inc3p-ls");
+document.getElementById('inc3p-ss').innerText = sessionStorage.getItem("inc3p-ss");
